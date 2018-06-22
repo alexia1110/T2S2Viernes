@@ -25,12 +25,12 @@
 		<div data-role="content" role="main">
 			<h1>UNAB Identidad</h1>
             <div>
-                <center>
+                <center >
                         <img style="display:none;width:120px;height:120px;" id="largeImage" src="" />
                 </center>
             </br>
                     <center>
-                            Nombre Completo: <input id="nombres" placeholder="nombres" name="user" type="text" class="atributos" />
+                            Nombre Completo: <input id="nombres" placeholder="nombres" name="user" type="text" class="atributos"  />
                             </br>
                             Apellido: <input id="apellidos" placeholder="Apellidos"/>
                             </br>
@@ -38,7 +38,7 @@
                             </br>
                             Edad:<input id="edad" placeholder="edad"/>
                             <br/>
-                            Sexo:<select id="select">
+                            Sexo:<select id="sexo">
                                     <option value="f">Femenido</option>
                                     <option value="m">Masculino</option>
                                     <option value="o">Otros</option>
@@ -84,8 +84,9 @@
         ></script>
 			<button id="ingresa" class="w-auto mx-auto bg-transparent hover:bg-grey-light text-grey-dark  hover:border-transparent rounded">Enviar</button>
 			<p id="tiempoM" name=""></p>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBirZDzIszIW5KUCbtDhtwQIUogpjncM3s&callback=initMap" async defer></script>
-		</div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBirZDzIszIW5KUCbtDhtwQIUogpjncM3s&callback=initMap" async defer></script>
+        <script type="text/javascript" src="js/index.js"></script>
   </div> 
 </body>
 </html>

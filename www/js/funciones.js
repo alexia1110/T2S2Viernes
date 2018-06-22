@@ -9,6 +9,10 @@ var map  = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.4726900, lng: -70.6472400},
     zoom: 15
 });
+//var f = new date();
+//var fecha= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+
+
 var maxlat, maxlng, minlat, minlng, minDate, dt;
 var markers =[];
 var dataset = [];
@@ -16,27 +20,38 @@ var dataBase = []; /* array2 */
 var nxtQuery = [];/* array */;
 var geocoder = new google.maps.Geocoder();
 
+var nombres=document.getElementById('nombres').value;
+var apellidos=document.getElementById('apellidos').value;
+var mail=document.getElementById('email').value;
+var rut=document.getElementById('rut').value;
+var edad=document.getElementById('edad').value;
+var sexo=document.getElementById('sexo').value;
+var fono=document.getElementById('fono').value;
+var carrera=document.getElementById('carrera').value;
+
+
 $(document).ready( function(){
-
-        var bgGeo = window.BackgroundGeolocation;
-         var callbackSuccess = function(location){
-        coords = '{latitude:'+ location.coords.latitude+', longitude:'+ location.coords.longitude+'}';
-    }
-    var onError = function(errorCode){
-        console.log(errorCode);
-    }
-        clearMarkers();
-        markers = [];
-        markers.push(new google.maps.Marker({
-            map: map,
-            position: coords,
-        }));
-        map.setZoom(15);
     
-  
-   
-});s
+});
+function initMap() {
+    var bgGeo = window.BackgroundGeolocation;
+     var callbackSuccess = function(location){
+    coords = '{latitude:'+ location.coords.latitude+', longitude:'+ location.coords.longitude+'}';
+}
+var onError = function(errorCode){
+    console.log(errorCode);
+}
+map.setCenter(coords);
+    clearMarkers();
+    markers = [];
+    markers.push(new google.maps.Marker({
+        map: map,
+        position: {lat :location.coords.latitude,lng:location.coords.longitude}
+    }));
+    map.setZoom(15);
 
+
+};
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
