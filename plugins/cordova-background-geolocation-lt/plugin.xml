@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-background-geolocation-lt"
+    version="2.12.2">
+
+    <name>BackgroundGeolocation</name>
+    <description>The most sophisticated, battery-efficient background-geolocation and geofencing plugin for Cordova</description>
+    <license>MIT</license>
+    <keywords>cordova, phonegap, background geolocation, background, location, tracking, geofence, geofencing</keywords>
+
+    <engines>
+        <engine name="cordova" version=">=7.1.0"/>
+        <engine name="cordova-android" version=">=7.0.0"/>
+        <engine name="cordova-ios" version=">=4.5.0"/>
+    </engines>
+
+    <dependency id="cordova-plugin-background-fetch" version="~5.4.1" />
+
+    <js-module src="www/BackgroundGeolocation.js" name="BackgroundGeolocation">
+        <clobbers target="window.BackgroundGeolocation" />
+    </js-module>
+    <js-module src="www/API.js" name="API"></js-module>    
+    
+     <platform name="ios">
+        <preference name="BACKGROUND_MODE_LOCATION" default="&lt;string&gt;location&lt;/string&gt;" />
+        <preference name="LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION" default="Always use is required for constant background location-tracking" />
+        <preference name="LOCATION_ALWAYS_USAGE_DESCRIPTION" default="Background location-tracking is required" />
+        <preference name="LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION" default="Background location-tracking is required" />
+        <preference name="MOTION_USAGE_DESCRIPTION" default="Using the accelerometer increases battery-efficiency by intelligently toggling location-tracking only when the device is detected to be moving" />
+
+        <dependency id="cordova-plugin-cocoalumberjack" version="~0.0.4" />
+        <!-- required background modes:  App registers for location updates -->
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                $BACKGROUND_MODE_LOCATION
+            </array>
+        </config-file>
+        
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysAndWhenInUseUsageDescription">
+            <string>$LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>$LOCATION_ALWAYS_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+            <string>$LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSMotionUsageDescription">
+            <string>$MOTION_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="BackgroundGeolocation">
+                <param name="ios-package" value="CDVBackgroundGeolocation"/>
+            </feature>
+        </config-file>
+
+        <framework src="AudioToolbox.framework" weak="true" />
+        <framework src="SystemConfiguration.framework" weak="true" />
+        <framework src="AVFoundation.framework" weak="true" />
+        <framework src="libsqlite3.dylib" weak="true" />
+        <framework src="libz.dylib" weak="true" />
+        <framework src="src/ios/TSLocationManager.framework" custom="true" />
+        <source-file src="src/ios/CDVBackgroundGeolocation.m" />
+        <header-file src="src/ios/CDVBackgroundGeolocation.h" />
+     </platform>
+
+     <!-- android -->
+    <platform name="android">
+        <preference name="LICENSE" default="YOUR_LICENSE_KEY" />
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="$LICENSE" />
+
+            <service android:name="com.transistorsoft.cordova.bggeo.HeadlessJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="true" />
+
+            <receiver android:name="com.transistorsoft.cordova.bggeo.HeadlessBroadcastReceiver">
+                <intent-filter>
+                    <action android:name="${applicationId}.tslocationmanager.event.LOCATION" />
+                    <action android:name="${applicationId}.tslocationmanager.event.MOTIONCHANGE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.ACTIVITYCHANGE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.PROVIDERCHANGE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.POWERSAVECHANGE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.HEARTBEAT" />
+                    <action android:name="${applicationId}.tslocationmanager.event.GEOFENCE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.HTTP" />
+                    <action android:name="${applicationId}.tslocationmanager.event.SCHEDULE" />
+                    <action android:name="${applicationId}.tslocationmanager.event.BOOT" />
+                    <action android:name="${applicationId}.tslocationmanager.event.TERMINATE" />
+                </intent-filter>
+            </receiver>
+        </config-file>
+
+        <preference name="GOOGLE_API_VERSION" default="11.8.0" />
+        <framework src="com.google.android.gms:play-services-location:$GOOGLE_API_VERSION"/>
+        <preference name="APPCOMPAT_VERSION" default="27.0.0" />
+        <framework src="com.android.support:appcompat-v7:$APPCOMPAT_VERSION"/>
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+        
+        <resource-file src="src/android/libs/com/transistorsoft/tslocationmanager" target="../../libs/com/transistorsoft/tslocationmanager" />
+
+        <source-file src="src/android/CDVBackgroundGeolocation.java" target-dir="src/com/transistorsoft/cordova/bggeo" />
+        <source-file src="src/android/HeadlessBroadcastReceiver.java" target-dir="src/com/transistorsoft/cordova/bggeo" />
+        <source-file src="src/android/HeadlessJobService.java" target-dir="src/com/transistorsoft/cordova/bggeo" />
+        <source-file src="src/android/HeadlessTask.java" target-dir="src/com/transistorsoft/cordova/bggeo" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BackgroundGeolocation">
+                <param name="android-package" value="com.transistorsoft.cordova.bggeo.CDVBackgroundGeolocation"/>
+            </feature>
+        </config-file>
+     </platform>
+</plugin>

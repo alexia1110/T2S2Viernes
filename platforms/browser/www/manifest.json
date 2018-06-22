@@ -1,0 +1,58 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "HelloCordova",
+  "short_name": "HelloCordova",
+  "version": "io.cordova.hellocordova",
+  "description": "app solemne test",
+  "author": "Eliana Urrutia.",
+  "icons": [
+    {
+      "src": "icons/ios/icon.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "icons/ios/icon-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "icons/ios/icon_at_2x.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "icons/android/ldpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "icons/android/mdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "icons/android/hdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "icons/android/xhdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "icons/winphone/icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "icons/winphone/tileicon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "orientation": "any",
+  "start_url": "index.html"
+}

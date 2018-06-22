@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>solemne2</title>
+   	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="themes/file1.min.css" />
+  	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  	<script src="js/jquery-1.8.3.min.js" type="text/javascript" ></script>
+  	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" href="css/style.css"/>
+	<script src="js/funciones.js"></script>
+  	<script type="text/javascript" charset="utf-8">    
+</script>
+</head>
+
+<body>
+  <div data-role="page"> 
+    <div data-role="header">
+    </div>
+		<div data-role="content" role="main">
+			<h1>UNAB Identidad</h1>
+            <div>
+                <center>
+                        <img style="display:none;width:120px;height:120px;" id="largeImage" src="" />
+                </center>
+            </br>
+                    <center>
+                            Nombre Completo: <input id="nombres" placeholder="nombres" name="user" type="text" class="atributos" />
+                            </br>
+                            Apellido: <input id="apellidos" placeholder="Apellidos"/>
+                            </br>
+                            RUT:<input id="rut"    placeholder="18645180-5" />
+                            </br>
+                            Edad:<input id="edad" placeholder="edad"/>
+                            <br/>
+                            Sexo:<select id="select">
+                                    <option value="f">Femenido</option>
+                                    <option value="m">Masculino</option>
+                                    <option value="o">Otros</option>
+                                  </select>
+                            Email:<input id="email" placeholder="unab@douc.cl"/>
+                            <br/>
+                            Fono:<input type="tel" pattern="[0-9]{9}" id="fono" placeholder="94234234"/>
+                            <br/>
+                            Carrera:<input id="carrera" placeholder="Ing. Inductrial"/>      
+                    </center>
+                    
+                </div>
+            </div>
+            
+
+
+
+			<div class="searchAddressAgain">
+				<input type="button" value="Buscarme" id="Encontrarme" class="btnPrimary btnSearchAgain">
+			</div>
+
+
+
+			<!--  Mapa-->
+			
+		</div>
+		<div id="map"></div>
+				<script>
+					var d = document.getElementById("tiempo").dateTime;
+    			document.getElementById("tiempoM").innerHTML = d;
+				</script>
+				<button class="observacionproducto"  type="button" value="Localesbutton" id="Localesbutton" data-role="none" onclick="clearCache();getImage();" style="width: 75%">Tomar Foto</button>
+
+				<button class="botonlugares2" value="gallery" data-role="none" onclick="clearCache();getImage(pictureSource.PHOTOLIBRARY);">Obtener Foto desde Galeria</button>
+			</div>      
+			<script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>
+        <script
+            src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
+        ></script>
+			<button id="ingresa" class="w-auto mx-auto bg-transparent hover:bg-grey-light text-grey-dark  hover:border-transparent rounded">Enviar</button>
+			<p id="tiempoM" name=""></p>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBirZDzIszIW5KUCbtDhtwQIUogpjncM3s&callback=initMap" async defer></script>
+		</div>
+  </div> 
+</body>
+</html>

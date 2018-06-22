@@ -1,0 +1,33 @@
+p {
+    background-color: grey;
+    color: red;
+    font-size: 2em;
+}
+
+h1 {
+    background-color:rgb(71, 120, 177);
+    color:ghostwhite;
+}
+
+body{
+    font-family: Verdana;
+}
+
+.parrafo{
+    background-color: goldenrod;
+    color: #dddd;
+}
+
+.division{
+    border-color: brown rebeccapurple black burlywood;
+    border-style: double;
+    border-width: 60%;
+    background-color: #cccc;
+    height: 300px;
+    width: 60%;
+    margin: 2em;
+    padding: 0.8em 1em;
+    text-align: center;
+
+    
+}
