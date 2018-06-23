@@ -5,10 +5,7 @@ var destinationType; // sets the format of returned value
 var d = new Date();
 var perfil_alumno;
 var location;
-var map  = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.4726900, lng: -70.6472400},
-    zoom: 15
-});
+
 //var f = new date();
 //var fecha= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 
@@ -18,7 +15,7 @@ var markers =[];
 var dataset = [];
 var dataBase = []; /* array2 */
 var nxtQuery = [];/* array */;
-var geocoder = new google.maps.Geocoder();
+
 
 var nombres=document.getElementById('nombres').value;
 var apellidos=document.getElementById('apellidos').value;
@@ -33,7 +30,13 @@ var carrera=document.getElementById('carrera').value;
 $(document).ready( function(){
     
 });
+/*
 function initMap() {
+    map  = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -33.4726900, lng: -70.6472400},
+        zoom: 15
+    });
+    var geocoder = new google.maps.Geocoder();
     var bgGeo = window.BackgroundGeolocation;
      var callbackSuccess = function(location){
     coords = '{latitude:'+ location.coords.latitude+', longitude:'+ location.coords.longitude+'}';
@@ -51,7 +54,39 @@ map.setCenter(coords);
     map.setZoom(15);
 
 
-};
+};*/
+
+var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+    }
+
+
 
 document.addEventListener("deviceready", onDeviceReady, false);
 

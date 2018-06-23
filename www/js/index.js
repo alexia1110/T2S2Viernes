@@ -16,33 +16,50 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+document.addEventListener("deviceready", onDeviceReady, false);
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+function showAlert(msj)
+{
+    navigator.notification.alert(
+        msj,  // message
+        'UNAB',   // title
+        ''    // buttonName
+    );
+}
+// PhoneGap is ready
+function onDeviceReady() 
+{
+	// Do cool things here...
+	document.getElementById('largeImage').src='';
+	clearCache();
+	pictureSource=navigator.camera.PictureSourceType;
+	destinationType=navigator.camera.DestinationType;
+}
+      
+function clearCache() 
+{
+	navigator.camera.cleanup();
+}
+ 
+function getImage(source) 
+{
+       navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI });      
+}
+    
+function onFail(message) {
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    clearCache();
+	//alert('Captura Descartada.');
+	showAlert('Captura Descartada.'+ message);	
+}
+ 
+function uploadPhoto(imageURI) 
+{
+	var largeImage = document.getElementById('largeImage');
+	largeImage.style.display = 'block';
+	largeImage.src ="data:image/jpeg;base64," + imageURI;
+}
 
-        console.log('Received Event: ' + id);
-    }
-};
 
-
-
-app.initialize();
